@@ -1,17 +1,112 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, {StrictMode} from "react";
+import ReactDOM from "react-dom/client";
+import "./style.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const pizzaData = [
+  {
+    name: "Focaccia",
+    ingredients: "Bread with italian olive oil and rosemary",
+    price: 6,
+    photoName: "pizzas/focaccia.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Margherita",
+    ingredients: "Tomato and mozarella",
+    price: 10,
+    photoName: "pizzas/margherita.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Spinaci",
+    ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
+    price: 12,
+    photoName: "pizzas/spinaci.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Funghi",
+    ingredients: "Tomato, mozarella, mushrooms, and onion",
+    price: 12,
+    photoName: "pizzas/funghi.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Salamino",
+    ingredients: "Tomato, mozarella, and pepperoni",
+    price: 15,
+    photoName: "pizzas/salamino.jpg",
+    soldOut: true,
+  },
+  {
+    name: "Pizza Prosciutto",
+    ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
+    price: 18,
+    photoName: "pizzas/prosciutto.jpg",
+    soldOut: false,
+  },
+];
+
+function App() {
+  return (
+    <div className="container">
+      <Header />
+      <Menu />
+      <Footer />
+    </div>
+  );
+}
+
+// Create Component Header
+function Header() {
+  return (
+    <header className="header ">
+      <h1>Fast React Pizza Co.</h1>
+    </header>
+  );
+}
+// Create Component Menu
+function Menu() {
+  return (
+    <main className="menu">
+      <div>
+        <h2>Our Menu</h2>
+        <Pizza />
+        <Pizza />
+        <Pizza />
+      </div>
+    </main>
+  );
+}
+// Create Component Footer
+function Footer() {
+  const hours = new Date().getHours();
+  const openHours = 12;
+  const closeHours = 22;
+  const isOpen = hours >= openHours && hours <= closeHours;
+  console.log(isOpen);
+  // if (hours >= openHours && hours <= closeHours) alert("We're currently open ");
+  // else alert("Sorry we're  closed ");
+  return (
+    <footer className="footer">
+      {new Date().toLocaleDateString()}. We're currently open
+    </footer>
+  );
+}
+
+function Pizza() {
+  return (
+    <div>
+      <img src="pizzas/spinaci.jpg" alt="pizza spinaci" />
+      <h1>Pizza Spinaci</h1>
+      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <App />
-  </React.StrictMode>
+  </StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
